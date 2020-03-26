@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/find/find",
+    "pages/listen/listen",
+    "pages/my/my",
+    "component/tabBar/tabBar"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Listen By FM",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./images/home.png",
+        "selectedIconPath": "./images/homeSelected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/listen/listen",
+        "iconPath": "./images/listen.png",
+        "selectedIconPath": "./images/listenSelected.png",
+        "text": "我听"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "iconPath": "./images/find.png",
+        "selectedIconPath": "./images/findSelected.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "./images/my.png",
+        "selectedIconPath": "./images/mySelected.png",
+        "text": "我的"
+      }
+    ],
+    "color": "#333",
+    "selectedColor": "#F56C02"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
