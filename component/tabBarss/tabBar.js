@@ -107,12 +107,12 @@ Page({
     }
   },
 
-  switchTab(event) {
-    var cur = event.detail.current;
+  switchTab(e) {
+    var cur = e.target.dataset.id;
     var singleNavWidth = this.data.windowWidth / 5;
     this.setData({
       currentTab: cur,
-      navScrollLeft: (cur - 2) * singleNavWidth
+      navScrollLeft: (cur - 4) * 65
     });
   }
 })

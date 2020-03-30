@@ -1,1 +1,41 @@
-/* component/tabBar/tabBar.wxss */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  height: 100rpx;
+  line-height: 100rpx;
+  width: auto;
+  background: #f7f4f4;
+  padding: 0 20rpx;
+}
+
+.nav .items {
+  width: 60px;
+  font-size: 32rpx;
+  color: #333;
+  text-align: center;
+  display: inline-block;
+}
+
+.nav .active {
+  font-size: 42rpx;
+  font-weight: 600;
+}
+
+.content {
+  background-color: #fff;
+  width: auto;
+}
+
+.content .rt-item {
+  padding-bottom: 50rpx;
+  display: inline-block;
+  width: 100%;
+}

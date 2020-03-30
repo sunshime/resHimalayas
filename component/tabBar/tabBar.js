@@ -1,69 +1,73 @@
-// component/tabBar/tabBar.js
-
 import tabList from '../../api/tabbar.js'
 
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    tabList:tabList
+    tabCur: 0,
+    mainCur: 0,
+    verticalNavTop: 0,
+    tabList: tabList,
+    contentList:[1,1,1,1,1,1,1,1,1,1,1],
+    load: true
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  onLoad() {
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask: true
+    // });
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onReady() {
+    // wx.hideLoading()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 切换左边菜单
+  tabSelect(e) {
+    this.setData({
+      tabCur: e.currentTarget.dataset.id,
+      mainCur: e.currentTarget.dataset.id,
+      // 实现左边自动滑动到某个位置 4表示自动滑动到 第五项 （4为索引值）
+      verticalNavTop: (e.currentTarget.dataset.id - 2) * 60
+    })
+    // console.log('verticalNavTop===>', this.data.verticalNavTop)
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+  // 滑动右边对应左边菜单切换
+  VerticalMain(e) {
+    console.log('e===>', e)
+    let that = this;
+    let contentList = this.data.contentList;
+    let tabWidth = 0;
 
-  },
+    for (let i = 0; i < contentList.length; i++) {
+      let view = wx.createSelectorQuery().select("#main-" + i);
+      console.log("view===>", view)
+      view.fields({
+        size: true
+      }, data => {
+        console.log("data===>", data)
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+        contentList[i].left = tabWidth;
+        tabWidth = tabWidth + data.width;
+        contentList[i].right = tabWidth;
 
-  },
+      }).exec();
+    }
+    that.setData({
+      contentList: contentList
+    })
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+    console.log(this.data.contentList)
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    let scrollLeft = e.detail.scrollLeft + 30;
+    for (let i = 0; i < contentList.length; i++) {
+      if (scrollLeft > contentList[i].left && scrollLeft < contentList[i].right) {
+        that.setData({
+          verticalNavTop: (i - 4) * 50,
+          tabCur: i
+        })
+        return false
+      }
+    }
   }
 })
